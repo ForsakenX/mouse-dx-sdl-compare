@@ -68,7 +68,7 @@
 	</Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="c">
-			<File RelativePath="input_dinput.c"></File>
+			<File RelativePath="input_dx.c"></File>
 			<File RelativePath="input_sdl.c"></File>
 			<File RelativePath="main.c"></File>
 			<File RelativePath="timer.c"></File>
