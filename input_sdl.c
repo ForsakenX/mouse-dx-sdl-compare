@@ -15,6 +15,9 @@ void sdl_timer_init( void )
 
 BOOL sdl_handle_events( void )
 {
+	int x = 0;
+	int y = 0;
+	int inputs = 0;
 	static float runs = 0.0f;
 	SDL_Event _event;
 
@@ -35,16 +38,10 @@ BOOL sdl_handle_events( void )
 
 		case SDL_MOUSEMOTION:
 			{
-				//SDL_MouseMotionEvent motion = _event.motion;
-				//p("x %d y %d\n", motion.xrel, motion.yrel);
-				{
-					//float seconds = timer_run( &sdl_mouse_timer );
-					//float ms = seconds * 1000.0f;
-					//float per_second = runs / seconds;
-					//p("sdl/s: %f s:%f ms:%f r:%f\n",per_second,seconds,ms,runs);
-					p("sdl runs: %f\n",runs);
-					runs = 0.0f;
-				}
+				SDL_MouseMotionEvent motion = _event.motion;
+				x += motion.xrel;
+				y += motion.yrel;
+				inputs++;
 			}
 			break;
 
@@ -61,6 +58,20 @@ BOOL sdl_handle_events( void )
 			break;
 		}
 	}
+
+	if(x+y > 0)
+	{
+		float seconds = timer_run( &sdl_mouse_timer );
+		float ms = seconds * 1000.0f;
+		//float per_second = runs / seconds;
+		//p("sdl/s: %f s:%f ms:%f r:%f\n",per_second,seconds,ms,runs);
+		//p("sdl runs: %f\n",runs);
+		//p("x %d y %d\n", x, y);
+		p("ms from last update: %f\n",ms);
+		runs = 0.0f;
+	}
+
+	inputs = 0;
 
 	return TRUE;
 }
