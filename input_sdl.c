@@ -59,7 +59,7 @@ BOOL sdl_handle_events( void )
 		}
 	}
 
-	if(x+y > 0)
+	if(x+y != 0)
 	{
 		float seconds = timer_run( &sdl_mouse_timer );
 		float ms = seconds * 1000.0f;
